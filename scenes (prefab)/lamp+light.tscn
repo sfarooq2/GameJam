@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b24uung3dd2s6"]
+
+[ext_resource type="Texture2D" uid="uid://bltdpc6tmshcx" path="res://art/lamp.png" id="1_3bdp5"]
+[ext_resource type="Texture2D" uid="uid://bvwji7drvfmen" path="res://art/lightulb.png" id="2_ts213"]
+[ext_resource type="Script" path="res://scenes (prefab)/light_radius.gd" id="3_moxxf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ongv"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7cm5"]
+radius = 124.004
+
+[node name="lamp+light" type="CharacterBody2D"]
+
+[node name="lamp" type="Sprite2D" parent="."]
+position = Vector2(440, 553)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("1_3bdp5")
+
+[node name="light" type="Sprite2D" parent="."]
+position = Vector2(441, 504)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_ts213")
+
+[node name="light_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(441, 501)
+shape = SubResource("CapsuleShape2D_3ongv")
+
+[node name="light_radius" type="Area2D" parent="."]
+position = Vector2(441, 501)
+script = ExtResource("3_moxxf")
+
+[node name="light_radius" type="CollisionShape2D" parent="light_radius"]
+shape = SubResource("CircleShape2D_m7cm5")
+
+[connection signal="body_entered" from="light_radius" to="light_radius" method="_on_body_entered"]
+[connection signal="body_exited" from="light_radius" to="light_radius" method="_on_body_exited"]

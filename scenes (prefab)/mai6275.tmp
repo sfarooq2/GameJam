@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4d4xq8vify8j"]
+
+[ext_resource type="Script" path="res://scenes (prefab)/main_character.gd" id="1_bioys"]
+[ext_resource type="Texture2D" uid="uid://q8kjgkbv3x8y" path="res://art/gen_avatar_flip.png" id="1_x1kb4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnbq1"]
+radius = 12.0
+height = 39.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_bioys")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(45, 572)
+scale = Vector2(0.025, 0.026)
+texture = ExtResource("1_x1kb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(46, 572)
+shape = SubResource("CapsuleShape2D_wnbq1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(47, 542)
+zoom = Vector2(4, 4)
